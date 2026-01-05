@@ -3,38 +3,43 @@ import { MapPin, PhoneCall, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-white border-t border-gray-100 overflow-hidden">
+    <footer className="relative bg-background overflow-hidden">
 
-      {/* Soft background glow */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl" />
+      {/* paper tone background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-[#FAF6F0] to-background" />
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[520px] h-[520px] bg-accent/10 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
 
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 animate-fadeUp">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
 
           {/* Brand */}
           <div>
-            <h3 className="font-heading text-2xl font-bold text-foreground mb-3">
+            <h3 className="font-heading text-3xl text-foreground mb-4">
               VISAGE
             </h3>
-            <p className="text-sm text-secondary leading-relaxed">
-              <span className="font-medium text-foreground">The Face of Life</span>
-              <br />
-              Creating confidence, creativity, and expression in every child.
+
+            <p className="text-sm text-secondary leading-relaxed max-w-sm">
+              <span className="font-medium text-foreground block mb-1">
+                The Face of Life
+              </span>
+              Creating confidence, creativity, and expression in every child —
+              through art, communication, and design.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading text-lg font-semibold text-foreground mb-4">
-              Quick Links
+            <h4 className="font-heading text-lg text-foreground mb-6">
+              Explore
             </h4>
-            <ul className="space-y-2">
+
+            <ul className="space-y-3">
               {[
                 { href: "/about", label: "About Us" },
                 { href: "/programs", label: "Programs" },
-                { href: "/services", label: "Services" },
+                { href: "/services", label: "Design Services" },
                 { href: "/gallery", label: "Gallery" },
                 { href: "/contact", label: "Contact" },
               ].map((link) => (
@@ -43,8 +48,9 @@ export default function Footer() {
                     href={link.href}
                     className="
                       relative text-sm text-secondary
-                      hover:text-foreground transition-colors
-                      after:absolute after:left-0 after:-bottom-0.5
+                      transition-colors duration-300
+                      hover:text-foreground
+                      after:absolute after:left-0 after:-bottom-1
                       after:h-[1px] after:w-0 after:bg-accent
                       after:transition-all after:duration-300
                       hover:after:w-full
@@ -59,15 +65,17 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading text-lg font-semibold text-foreground mb-4">
-              Contact
+            <h4 className="font-heading text-lg text-foreground mb-6">
+              Get in Touch
             </h4>
-            <ul className="space-y-3 text-sm text-secondary">
-              <li className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-accent" />
+
+            <ul className="space-y-4 text-sm text-secondary">
+              <li className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 text-accent mt-0.5" />
                 Gurugram, India
               </li>
-              <li className="flex items-center gap-2">
+
+              <li className="flex items-center gap-3">
                 <PhoneCall className="w-4 h-4 text-accent" />
                 <a
                   href="tel:+919876543210"
@@ -76,7 +84,8 @@ export default function Footer() {
                   +91 98765 43210
                 </a>
               </li>
-              <li className="flex items-center gap-2">
+
+              <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-accent" />
                 <a
                   href="mailto:info@visage.com"
@@ -90,12 +99,14 @@ export default function Footer() {
 
         </div>
 
+        {/* Divider */}
+        <div className="mt-16 border-t border-black/10" />
+
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-gray-100 text-center animate-fadeUp">
-          <p className="text-sm text-secondary">
-            © {new Date().getFullYear()} <span className="font-medium text-foreground">VISAGE</span>.
-            All rights reserved.
-          </p>
+        <div className="mt-8 text-center text-sm text-secondary">
+          © {new Date().getFullYear()}{" "}
+          <span className="font-medium text-foreground">VISAGE</span>.
+          Crafted with care for creative growth.
         </div>
 
       </div>

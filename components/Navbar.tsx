@@ -3,6 +3,21 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PhoneCall, Menu, X } from "lucide-react";
+import {
+  Boxes,
+  Clock,
+  ShieldCheck,
+  PenLine,
+  Brush,
+  Scissors,
+  Feather,
+  Mic,
+  Star,
+  Eye,
+  FileText,
+  BookOpen,
+  Layout,
+} from "lucide-react";
 
 /* =========================
    🔤 Typing Subtitle
@@ -57,21 +72,64 @@ export default function Navbar() {
     { href: "/contact", label: "Contact" },
   ];
 
-  return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  /* Icons for rain */
+  const rainingIcons = [
+    PenLine, Brush, Scissors, Feather, Mic, Star, Eye,
+    FileText, BookOpen, Layout, Boxes, Clock, ShieldCheck,
+    PenLine, Brush, Scissors, Feather, Mic, Star, Eye,
+    FileText, BookOpen, Layout, Boxes, Clock, ShieldCheck,
+  ];
 
-        <div className="flex justify-between items-center h-16">
+  return (
+    <nav className="sticky top-0 z-50 relative overflow-hidden bg-white/80 backdrop-blur-lg border-b border-gray-100 shadow-sm">
+
+      {/* 🌧️ ICON RAIN (CLIPPED INSIDE NAV) */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden hidden md:block">
+        {rainingIcons.map((Icon, index) => {
+          const left = (index * 4) % 100;
+          const delay = index * 0.15;
+          const duration = 6 + (index % 4);
+
+          return (
+            <Icon
+              key={`rain-${index}`}
+              className="absolute animate-iconRain"
+              style={{
+                left: `${left}%`,
+                top: "-20px",
+                animationDelay: `${delay}s`,
+                animationDuration: `${duration}s`,
+                width: 18,
+                height: 18,
+                color: "rgba(140,106,79,0.35)",
+                strokeWidth: 1.5,
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* 🧠 NAV CONTENT */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center min-h-[72px]">
 
           {/* LEFT BRAND */}
-          <Link href="/" className="flex items-center">
-            <span className="font-heading text-2xl font-bold tracking-wide text-foreground">
-              VISAGE
-            </span>
-            <TypingSubtitle />
+          <Link href="/" className="flex items-center gap-3">
+            <img
+              src="/logo/logo-visage.png"
+              alt="Visage Logo"
+              className="h-12 w-12 object-contain"
+            />
+
+            <div className="flex flex-col leading-tight">
+              <span className="font-heading text-2xl font-semibold tracking-wide text-foreground">
+                VISAGE
+              </span>
+              <TypingSubtitle />
+            </div>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
@@ -90,7 +148,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* CTA */}
             <a
               href="tel:+919876543210"
               className="
@@ -107,17 +164,16 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE BUTTON */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
         <div
           className={`
             md:hidden overflow-hidden transition-all duration-300
@@ -133,7 +189,6 @@ export default function Navbar() {
                   px-3 py-2 rounded-lg
                   text-sm font-medium text-secondary
                   hover:bg-accent/10 hover:text-foreground
-                  transition-all
                 "
                 onClick={() => setIsOpen(false)}
               >
@@ -141,7 +196,6 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Mobile CTA */}
             <a
               href="tel:+919876543210"
               className="
@@ -156,7 +210,6 @@ export default function Navbar() {
             </a>
           </div>
         </div>
-
       </div>
     </nav>
   );

@@ -1,64 +1,162 @@
 @import "tailwindcss";
 
+/* =========================
+   🎨 VINTAGE COLOR SYSTEM
+========================= */
 :root {
-  --background: #FFFBF7;
-  --foreground: #1F2937;
-  --secondary-text: #6B7280;
-  --accent: #EC4899;
-  --highlight: #F97316;   
+  --background: #F5EFE6;        /* Handmade paper */
+  --foreground: #2F2A26;        /* Ink brown */
+  --secondary-text: #6E6259;    /* Muted brown */
+  --accent: #8C6A4F;            /* Vintage gold */
+  --highlight: #5E8B8B;         /* Faded teal (eye tone) */
 }
 
-
+/* =========================
+   🌿 TAILWIND THEME MAP
+========================= */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary-text);
   --color-accent: var(--accent);
   --color-highlight: var(--highlight);
+
   --font-heading: var(--font-cormorant);
   --font-sans: var(--font-inter);
 }
 
+/* =========================
+   📄 BASE STYLES
+========================= */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
+/* =========================
+   ✍️ HEADINGS – ARTISTIC
+========================= */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant), serif;
   font-weight: 600;
-}
-
-/* Utility classes for custom colors */
-.text-foreground {
+  letter-spacing: 0.03em;
   color: var(--foreground);
 }
 
-.text-secondary {
-  color: var(--secondary-text);
+/* =========================
+   🎯 TEXT UTILITIES
+========================= */
+.text-foreground { color: var(--foreground); }
+.text-secondary  { color: var(--secondary-text); }
+.text-accent     { color: var(--accent); }
+.text-highlight  { color: var(--highlight); }
+
+/* =========================
+   🖌️ BACKGROUND UTILITIES
+========================= */
+.bg-accent    { background-color: var(--accent); }
+.bg-highlight { background-color: var(--highlight); }
+
+/* =========================
+   🪵 VINTAGE CARD STYLE
+========================= */
+.card-vintage {
+  background: #FAF6F0;
+  border: 1px solid rgba(47, 42, 38, 0.12);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  border-radius: 12px;
 }
 
-.text-accent {
-  color: var(--accent);
-}
-
-.text-highlight {
-  color: var(--highlight);
-}
-
-.bg-accent {
-  background-color: var(--accent);
-}
-
-.bg-highlight {
-  background-color: var(--highlight);
-}
-
-.font-heading {
+/* =========================
+   🖋️ BUTTON STYLE
+========================= */
+.btn-vintage {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 999px;
   font-family: var(--font-cormorant), serif;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
 }
 
-.font-sans {
-  font-family: var(--font-inter), sans-serif;
+.btn-vintage:hover {
+  background: #73523D;
+  transform: translateY(-1px);
 }
+
+/* =========================
+   🔠 FONT UTILITIES
+========================= */
+.font-heading { font-family: var(--font-cormorant), serif; }
+.font-sans    { font-family: var(--font-inter), sans-serif; }
+
+@keyframes slowRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slowRotate {
+  animation: slowRotate 10s linear infinite;
+}
+
+
+/* 🌿 Vintage Animated Background */
+.vintage-bg {
+  background: linear-gradient(
+    120deg,
+    #fffaf3,
+    #faf1e6,
+    #f6eee3,
+    #fff6eb
+  );
+  background-size: 400% 400%;
+  animation: vintageFlow 25s ease infinite;
+}
+
+@keyframes vintageFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 🌧️ Raining Icons Animation */
+@keyframes iconRain {
+  0% {
+    transform: translateY(-30px) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.6;
+  }
+  95% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(120px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-iconRain {
+  animation: iconRain linear infinite;
+  will-change: transform, opacity;
+  display: block;
+}
+
+
+
